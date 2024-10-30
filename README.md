@@ -1,4 +1,4 @@
-> [!Warning] : Under development 
+> [!WARNING] : Under development 
 
 <div align="center">
   <h1>resnet-pytorch</h1>

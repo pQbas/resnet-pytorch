@@ -170,7 +170,7 @@ def loadModel(
     else:
         logger.info('Using provided parameters directly.')
  
-    model = AlexNet(categories = int(params['categories']))
+    model = ResNet(categories = int(params['categories']))
     model.load_state_dict(torch.load(weightsPath, map_location=device, weights_only=True))
     model.to(device)
     return model

@@ -1,3 +1,5 @@
+# **> [!Warning]:** : Under development 
+
 <div align="center">
   <h1>resnet-pytorch</h1>
   ResNet CNN implemented in PyTorch, ready for training, testing, and inference.
@@ -20,7 +22,7 @@ pip install -e .
 
 ## How use it?
 
-This library gives access for three main actions with the alexnet-cnn, this actions are
+This library gives access for three main actions with the resnet-cnn, this actions are
 `train`, `test` and `inference`. The `demo` folder contains an example of how use it
 with a notebook ready to use in colab. Below are some snippets wich explains the code 
 in the demo folder.
@@ -28,13 +30,13 @@ in the demo folder.
 
 ### Train action
 
-Following code helps you to train alexnet. To train is needed to define a `CONFIG_PARAMS`
+Following code helps you to train resnet. To train is needed to define a `CONFIG_PARAMS`
 constant, this is a dictionary that contains training parameters such as `batch size`,
 `categories`, `optimizer`, `learning rate`, etc. The `train` function receives this
 dictionary and gives you the path where the weights were saved as a `pt` file.
 
 ```python
-# Import alexnet library previously installed
+# Import resnet library previously installed
 import resnet
 
 # Define the config params for all proceess
@@ -50,7 +52,7 @@ CONFIG_PARAMS = {
     'dataset_name'  : 'cifar10',
 }
 
-# Train the AlexNet model
+# Train the resnet model
 weightsPath = resnet.train(params = CONFIG_PARAMS)
 ```
 
@@ -60,7 +62,7 @@ Result of this action is the accuracy metric computed for the trained model, thi
 function receives the `params` paramtere and also the `weights path`.
 
 ```python
-# Import alexnet library previously installed
+# Import resnet library previously installed
 import resnet
 
 # Test the ResNet model

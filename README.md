@@ -1,6 +1,3 @@
-> [!WARNING]
-> Under development 
-
 <div align="center">
   <h1>resnet-pytorch</h1>
   ResNet CNN implemented in PyTorch, ready for training, testing, and inference.

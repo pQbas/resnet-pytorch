@@ -16,11 +16,9 @@ class ResNetBlock(nn.Module):
             nn.Conv2d(c_out, c_out, kernel_size=kernel_size, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(c_out)
         )
-        
-        if c_in != c_out:
-            self.I = nn.Conv2d(c_in, c_out, kernel_size=1, stride=stride, padding=0, bias=False)
-        else:
-            self.I = nn.Identity() 
+
+        self.I = nn.Identity() if c_in == c_out else \
+                 nn.Conv2d(c_in, c_out, kernel_size=1, stride=stride, padding=0, bias=False) 
 
     def forward(self, x):
         F = self.F

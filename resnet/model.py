@@ -6,35 +6,25 @@ class ResNetBlock(nn.Module):
     def __init__(self, c_in, c_out, kernel_size, stride=1):
         super(ResNetBlock, self).__init__()
 
-
-        self.w1 = nn.Sequential(
-            nn.Conv2d(c_in, c_out, kernel_size=kernel_size, stride=stride, padding=1, 
-                      bias=False),
-            nn.BatchNorm2d(c_out)
-        )
-
-        self.w2 = nn.Sequential(
+        self.F = nn.Sequential(
+            # 1st convolutional block
+            nn.Conv2d(c_in, c_out, kernel_size=kernel_size, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(c_out),
+            # Activation function
+            nn.ReLU(),
+            # 2nd convolutional block
             nn.Conv2d(c_out, c_out, kernel_size=kernel_size, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(c_out)
         )
-
-        self.use_identity = (c_in != c_out)
         
-        if self.use_identity:
-            self.identity = nn.Conv2d(c_in, c_out, kernel_size=1, stride=stride, padding=0, 
-                                      bias=False)
+        if c_in != c_out:
+            self.I = nn.Conv2d(c_in, c_out, kernel_size=1, stride=stride, padding=0, bias=False)
         else:
-            self.identity = nn.Identity()        
+            self.I = nn.Identity() 
 
     def forward(self, x):
-        
-        F = nn.Sequential(
-            self.w1,
-            nn.ReLU(),
-            self.w2)
-
-        I = self.identity
-        
+        F = self.F
+        I = self.I  
         return F(x) + I(x)
 
 
